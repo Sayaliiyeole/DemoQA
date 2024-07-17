@@ -42,7 +42,7 @@ public class DemoQASteps extends BaseClass {
 
 	@Then("user open new Window")
 	public void user_open_new_window() {
-		//driver.switchTo().newWindow(WindowType.TAB);
+		driver.switchTo().newWindow(WindowType.TAB);
 		driver.get("https://demoqa.com/browser-windows");
 		WebElement window = driver.findElement(By.xpath("//button[@id='windowButton']"));
 		js.executeScript("arguments[0].scrollIntoView;", window);
