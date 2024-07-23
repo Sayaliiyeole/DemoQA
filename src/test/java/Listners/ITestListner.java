@@ -10,10 +10,7 @@ public class ITestListner implements ITestListener {
 		System.out.println("TestStarted");
 	}
 	
-    public void onTestSuccess(ITestResult result) {
-    	System.out.println("Test completed");
-	}
-    
+   
     public void onTestFailure(ITestResult result) {
 		
 	}
