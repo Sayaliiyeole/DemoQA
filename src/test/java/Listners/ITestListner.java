@@ -7,9 +7,7 @@ public class ITestListner implements ITestListener {
 
 
 	
-    public void onTestSuccess(ITestResult result) {
-    	System.out.println("Test completed");
-	}
+ 
     
     public void onTestFailure(ITestResult result) {
 		
