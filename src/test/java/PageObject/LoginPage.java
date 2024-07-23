@@ -2,11 +2,9 @@ package PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import BaseTest.BaseClass;
 import Utility.utillities;
 
 public class LoginPage extends utillities  {
@@ -48,6 +46,8 @@ public class LoginPage extends utillities  {
 	@FindBy(id="sampleHeading")
 	WebElement frameelement;
 	
+	@FindBy(id="uploadPicture")
+	WebElement uploadfile;
 	
 	public void enterCredentials() {
 		
@@ -60,12 +60,13 @@ public class LoginPage extends utillities  {
 //		DOB.clear();
 //		DOB.sendKeys(prop.getProperty("DOB"));
 		Address.sendKeys(prop.getProperty("Address"));
+		uploadfile.sendKeys("C:\\Users\\isaya\\Downloads\\Title - Mon Jul 20 10_30_31 GMT+05_30 2020.jpg");
 	}
 	
 	public void submitDetails() {
 		wait(15);
 		js.executeScript("arguments[0].click();", Submit);
-		//Submit.click();
+		
 	}
 	
 	

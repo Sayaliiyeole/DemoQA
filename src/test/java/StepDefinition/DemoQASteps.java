@@ -1,20 +1,32 @@
 package StepDefinition;
 
-import java.awt.Window;
+import java.awt.AWTException;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import BaseTest.BaseClass;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import java.io.*;
+import Utility.utillities;
 
 public class DemoQASteps extends BaseClass {
+
 
 	@Given("user launches URL")
 	public void user_launches_url() {
@@ -63,8 +75,9 @@ public class DemoQASteps extends BaseClass {
 				System.out.println(message);
 				driver.close();
 			}
-			
-		} driver.switchTo().window(parentwindow);
+
+		}
+		driver.switchTo().window(parentwindow);
 	}
 
 	@Then("User operates on iframe")
@@ -77,19 +90,27 @@ public class DemoQASteps extends BaseClass {
 	}
 
 	@Then("User opens the Interactions url for Testing")
-	public void user_opens_the_interactions_url_for_testing() {
+	public void user_opens_the_interactions_url_for_testing() throws AWTException, IOException, InterruptedException {
 		driver.switchTo().newWindow(WindowType.TAB);
 		driver.get("https://demoqa.com/sortable");
 		WebElement grid = driver.findElement(By.id("demo-tab-grid"));
 		js.executeScript("arguments[0].scrollIntoView;", grid);
 		js.executeScript("arguments[0].click();", grid);
-		Actions ac = new Actions(driver);
-		List <WebElement> list = driver.findElements(By.xpath("//div[@class='create-grid']//child::div"));
+		
+		List<WebElement> list = driver.findElements(By.xpath("//div[@class='create-grid']//child::div"));
 		WebElement from = list.get(0);
 		WebElement to = list.get(5);
 		ac.clickAndHold(from).moveToElement(to).release().perform();
+		Thread.sleep(2000);
 		
-		
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		Rectangle rect = new Rectangle(d);
+		BufferedImage screenshot = r.createScreenCapture(rect);
+		ImageIO.write(screenshot, "PNG",
+				new File("../Automation_Practice/ScreenShots/" + utillities.randomImageName() + ".png"));
+
 	}
+
+	
 
 }
