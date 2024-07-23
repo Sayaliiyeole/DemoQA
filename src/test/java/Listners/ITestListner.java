@@ -6,9 +6,6 @@ import org.testng.ITestResult;
 public class ITestListner implements ITestListener {
 
 
-	public void onTestStart(ITestResult result) {
-		System.out.println("TestStarted");
-	}
 	
     public void onTestSuccess(ITestResult result) {
 		
